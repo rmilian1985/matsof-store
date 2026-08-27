@@ -42,9 +42,17 @@ function CatalogContent({ products }: { products: Product[] }) {
     { id: 'Niños', label: 'Niños', icon: Baby },
   ]
 
+  // Determinar si debemos mostrar el filtro de género
+  const categoriesWithGender = ['Todos', 'Polos', 'Polos y Poleras', 'Gorras']
+  const showGenderFilter = categoriesWithGender.includes(activeCategory)
+
   // Aplicar ambos filtros
   const filteredProducts = products.filter((p) => {
     const matchCategory = activeCategory === 'Todos' || p.category === activeCategory
+    
+    // Si no mostramos el filtro de género, no lo evaluamos para ocultar productos
+    if (!showGenderFilter) return matchCategory
+
     const productGender = p.gender || 'Unisex' // Si no tiene, asume Unisex
     const matchGender = activeGender === 'Todos' || 
                         productGender === activeGender || 
@@ -80,35 +88,37 @@ function CatalogContent({ products }: { products: Product[] }) {
         </div>
 
         {/* Filtro Innovador de Género */}
-        <div className="flex justify-center w-full">
-          <div className="inline-flex flex-wrap justify-center gap-3 sm:gap-4 p-2 bg-white/50 backdrop-blur-lg border border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl">
-            {genderFilters.map(filter => {
-              const Icon = filter.icon
-              const isActive = activeGender === filter.id
-              return (
-                <button
-                  key={filter.id}
-                  onClick={() => setActiveGender(filter.id)}
-                  className={`group relative flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-500 ${
-                    isActive 
-                      ? 'bg-[var(--cmyk-cian)] text-white shadow-lg shadow-cyan-500/30 scale-105' 
-                      : 'bg-white text-zinc-600 hover:bg-cyan-50 hover:text-cyan-700'
-                  }`}
-                >
-                  <Icon 
-                    size={18} 
-                    className={`transition-transform duration-500 ${isActive ? 'scale-110' : 'group-hover:scale-110'}`} 
-                  />
-                  <span>{filter.label}</span>
-                  {/* Animación de destello al estar activo */}
-                  {isActive && (
-                    <span className="absolute inset-0 rounded-xl bg-white/20 animate-pulse" />
-                  )}
-                </button>
-              )
-            })}
+        {showGenderFilter && (
+          <div className="flex justify-center w-full animate-in fade-in slide-in-from-top-4 duration-500">
+            <div className="inline-flex flex-wrap justify-center gap-3 sm:gap-4 p-2 bg-white/50 backdrop-blur-lg border border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl">
+              {genderFilters.map(filter => {
+                const Icon = filter.icon
+                const isActive = activeGender === filter.id
+                return (
+                  <button
+                    key={filter.id}
+                    onClick={() => setActiveGender(filter.id)}
+                    className={`group relative flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-500 ${
+                      isActive 
+                        ? 'bg-[var(--cmyk-cian)] text-white shadow-lg shadow-cyan-500/30 scale-105' 
+                        : 'bg-white text-zinc-600 hover:bg-cyan-50 hover:text-cyan-700'
+                    }`}
+                  >
+                    <Icon 
+                      size={18} 
+                      className={`transition-transform duration-500 ${isActive ? 'scale-110' : 'group-hover:scale-110'}`} 
+                    />
+                    <span>{filter.label}</span>
+                    {/* Animación de destello al estar activo */}
+                    {isActive && (
+                      <span className="absolute inset-0 rounded-xl bg-white/20 animate-pulse" />
+                    )}
+                  </button>
+                )
+              })}
+            </div>
           </div>
-        </div>
+        )}
 
       </div>
       
