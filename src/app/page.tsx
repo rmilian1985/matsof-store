@@ -1,4 +1,4 @@
-import FloatingCart from '@/components/FloatingCart'
+import { FloatingCart } from '@/components/FloatingCart'
 import HeroSection from '@/components/HeroSection'
 import CategoryGrid from '@/components/CategoryGrid'
 import PrintingTechniques from '@/components/PrintingTechniques'
