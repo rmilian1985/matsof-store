@@ -6,6 +6,7 @@ import FeaturesSection from '@/components/FeaturesSection'
 import WholesaleSection from '@/components/WholesaleSection'
 import Footer from '@/components/Footer'
 import { CatalogClient } from '@/components/CatalogClient'
+import FAQSection from '@/components/FAQSection'
 import { db } from '@/lib/db'
 
 export const dynamic = 'force-dynamic'
@@ -42,6 +43,8 @@ export default async function Home() {
         <WholesaleSection />
 
         <FeaturesSection />
+        
+        <FAQSection />
       </main>
 
       <Footer />

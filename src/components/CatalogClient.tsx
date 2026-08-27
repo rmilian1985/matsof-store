@@ -3,7 +3,7 @@
 import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { ProductCard } from './ProductCard'
-import { Users, User, UserPlus, Baby } from 'lucide-react'
+import { Users, User, UserPlus, Baby, Search } from 'lucide-react'
 
 type Product = {
   id: string
@@ -24,6 +24,7 @@ function CatalogContent({ products }: { products: Product[] }) {
 
   const [activeCategory, setActiveCategory] = useState<string>('Todos')
   const [activeGender, setActiveGender] = useState<string>('Todos')
+  const [searchQuery, setSearchQuery] = useState('')
 
   // Efecto para sincronizar la URL con el estado local
   useEffect(() => {
@@ -46,30 +47,51 @@ function CatalogContent({ products }: { products: Product[] }) {
   const categoriesWithGender = ['Polos', 'Polos y Poleras', 'Gorras']
   const showGenderFilter = categoriesWithGender.includes(activeCategory)
 
-  // Aplicar ambos filtros
+  // Aplicar filtros y búsqueda
   const filteredProducts = products.filter((p) => {
+    // 1. Filtro de búsqueda
+    const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          (p.description && p.description.toLowerCase().includes(searchQuery.toLowerCase()))
+    
+    // 2. Filtro de categoría
     const matchCategory = activeCategory === 'Todos' || p.category === activeCategory
     
-    // Si no mostramos el filtro de género, no lo evaluamos para ocultar productos
-    if (!showGenderFilter) return matchCategory
+    // 3. Filtro de género
+    let matchGender = true
+    if (showGenderFilter && activeGender !== 'Todos') {
+      const productGender = p.gender || 'Unisex'
+      matchGender = productGender === activeGender || productGender === 'Unisex'
+    }
 
-    const productGender = p.gender || 'Unisex' // Si no tiene, asume Unisex
-    const matchGender = activeGender === 'Todos' || 
-                        productGender === activeGender || 
-                        productGender === 'Unisex' // Unisex se muestra en todo menos niños
-    return matchCategory && matchGender
+    return matchesSearch && matchCategory && matchGender
   })
 
   return (
     <section className="w-full max-w-7xl">
       <div className="flex flex-col mb-12 gap-8">
         
-        {/* Cabecera y Filtro de Categoría */}
+        {/* Cabecera y Buscador */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
           <h2 className="text-3xl font-semibold tracking-tight text-zinc-900">
             Catálogo MATSOF
           </h2>
+          
+          <div className="relative w-full sm:max-w-md">
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <Search className="h-5 w-5 text-zinc-400" />
+            </div>
+            <input
+              type="text"
+              className="block w-full pl-11 pr-4 py-3 bg-white border border-zinc-200 rounded-2xl text-zinc-900 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-[var(--cmyk-cian)] focus:border-transparent transition-all shadow-sm"
+              placeholder="Buscar productos (ej. Taza mágica)..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+        </div>
 
+        {/* Filtro de Categoría */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
           <div className="flex flex-wrap justify-center p-1.5 bg-zinc-100/80 border border-zinc-200/50 shadow-inner rounded-full backdrop-blur-md">
             {categories.map(cat => (
               <button
@@ -124,9 +146,9 @@ function CatalogContent({ products }: { products: Product[] }) {
       
       {filteredProducts.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-24 px-4 text-center border-2 border-dashed border-zinc-200 rounded-3xl bg-zinc-50/50">
-          <p className="text-zinc-500 text-lg">No encontramos productos con estos filtros.</p>
+          <p className="text-zinc-500 text-lg">No encontramos productos con estos filtros o búsqueda.</p>
           <button 
-            onClick={() => { setActiveCategory('Todos'); setActiveGender('Todos'); }}
+            onClick={() => { setActiveCategory('Todos'); setActiveGender('Todos'); setSearchQuery(''); }}
             className="mt-4 text-[var(--cmyk-cian)] hover:underline font-medium"
           >
             Quitar todos los filtros
