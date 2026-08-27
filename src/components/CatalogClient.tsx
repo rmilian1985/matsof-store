@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { ProductCard } from './ProductCard'
 import { Users, User, UserPlus, Baby } from 'lucide-react'
 
@@ -17,9 +18,19 @@ type Product = {
   updatedAt: Date
 }
 
-export function CatalogClient({ products }: { products: Product[] }) {
+function CatalogContent({ products }: { products: Product[] }) {
+  const searchParams = useSearchParams()
+  const urlCategory = searchParams.get('categoria')
+
   const [activeCategory, setActiveCategory] = useState<string>('Todos')
   const [activeGender, setActiveGender] = useState<string>('Todos')
+
+  // Efecto para sincronizar la URL con el estado local
+  useEffect(() => {
+    if (urlCategory) {
+      setActiveCategory(urlCategory)
+    }
+  }, [urlCategory])
 
   const categories = ['Todos', ...Array.from(new Set(products.map(p => p.category)))]
   
@@ -121,5 +132,13 @@ export function CatalogClient({ products }: { products: Product[] }) {
         </div>
       )}
     </section>
+  )
+}
+
+export function CatalogClient({ products }: { products: Product[] }) {
+  return (
+    <Suspense fallback={<div className="py-24 text-center">Cargando catálogo...</div>}>
+      <CatalogContent products={products} />
+    </Suspense>
   )
 }

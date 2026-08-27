@@ -2,14 +2,14 @@ import Link from 'next/link'
 import { Shirt, Coffee, Image as ImageIcon, Box, Tag, Star, PenTool, LayoutTemplate } from 'lucide-react'
 
 const categories = [
-  { id: 'polos', name: 'Polos y Poleras', icon: Shirt, color: 'text-cyan-500', bg: 'bg-cyan-50', link: '/categoria/polos' },
-  { id: 'tazas', name: 'Tazas', icon: Coffee, color: 'text-fuchsia-500', bg: 'bg-fuchsia-50', link: '/categoria/tazas' },
-  { id: 'termos', name: 'Termos', icon: Box, color: 'text-yellow-500', bg: 'bg-yellow-50', link: '/categoria/termos' },
-  { id: 'cuadros', name: 'Cuadros', icon: ImageIcon, color: 'text-cyan-600', bg: 'bg-cyan-100', link: '/categoria/cuadros' },
-  { id: 'gorras', name: 'Gorras', icon: Tag, color: 'text-fuchsia-600', bg: 'bg-fuchsia-100', link: '/categoria/gorras' },
-  { id: 'pines', name: 'Pines', icon: Star, color: 'text-yellow-600', bg: 'bg-yellow-100', link: '/categoria/pines' },
-  { id: 'llaveros', name: 'Llaveros', icon: PenTool, color: 'text-gray-600', bg: 'bg-gray-100', link: '/categoria/llaveros' },
-  { id: 'otros', name: 'Ver Todo', icon: LayoutTemplate, color: 'text-gray-900', bg: 'bg-white border-2 border-gray-200', link: '/productos' },
+  { id: 'polos', name: 'Polos y Poleras', icon: Shirt, color: 'text-cyan-500', bg: 'bg-cyan-50', link: '/?categoria=Polos#productos' },
+  { id: 'tazas', name: 'Tazas', icon: Coffee, color: 'text-fuchsia-500', bg: 'bg-fuchsia-50', link: '/?categoria=Tazas#productos' },
+  { id: 'termos', name: 'Termos', icon: Box, color: 'text-yellow-500', bg: 'bg-yellow-50', link: '/?categoria=Termos#productos' },
+  { id: 'cuadros', name: 'Cuadros', icon: ImageIcon, color: 'text-cyan-600', bg: 'bg-cyan-100', link: '/?categoria=Cuadros#productos' },
+  { id: 'gorras', name: 'Gorras', icon: Tag, color: 'text-fuchsia-600', bg: 'bg-fuchsia-100', link: '/?categoria=Gorras#productos' },
+  { id: 'pines', name: 'Pines', icon: Star, color: 'text-yellow-600', bg: 'bg-yellow-100', link: '/?categoria=Pines#productos' },
+  { id: 'llaveros', name: 'Llaveros', icon: PenTool, color: 'text-gray-600', bg: 'bg-gray-100', link: '/?categoria=Llaveros#productos' },
+  { id: 'otros', name: 'Ver Todo', icon: LayoutTemplate, color: 'text-gray-900', bg: 'bg-white border-2 border-gray-200', link: '/?categoria=Todos#productos' },
 ]
 
 export default function CategoryGrid() {
