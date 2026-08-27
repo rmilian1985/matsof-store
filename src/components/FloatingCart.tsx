@@ -29,7 +29,10 @@ export function FloatingCart() {
     
     items.forEach(item => {
       const sizeText = item.size ? ` (Talla: ${item.size})` : ''
-      message += `- ${item.quantity}x ${item.name}${sizeText} (S/ ${(item.price * item.quantity).toFixed(2)})\n`
+      const colorText = item.color ? ` (Color: ${item.color})` : ''
+      const designText = item.designUrl ? `\n   📎 Diseño adjunto: ${item.designUrl}` : ''
+      
+      message += `- ${item.quantity}x ${item.name}${sizeText}${colorText} (S/ ${(item.price * item.quantity).toFixed(2)})${designText}\n`
     })
     
     message += `\n*Total a pagar: S/ ${getTotal().toFixed(2)}*`
@@ -107,7 +110,11 @@ export function FloatingCart() {
                     <h3 className="font-semibold text-sm text-zinc-800 line-clamp-2 leading-tight">
                       <span className="text-secondary font-bold mr-1">{item.quantity}x</span> 
                       {item.name}
-                      {item.size && <span className="block text-zinc-500 font-normal mt-0.5 text-xs">Talla: {item.size}</span>}
+                      <div className="flex flex-wrap gap-x-2 mt-1">
+                        {item.size && <span className="text-zinc-500 font-normal text-xs">Talla: {item.size}</span>}
+                        {item.color && <span className="text-zinc-500 font-normal text-xs">Color: {item.color}</span>}
+                        {item.designUrl && <span className="text-emerald-600 font-medium text-xs flex items-center gap-1">📎 Con diseño</span>}
+                      </div>
                     </h3>
                     <button 
                       onClick={() => removeItem(item.id)}
