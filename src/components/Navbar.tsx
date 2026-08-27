@@ -77,12 +77,6 @@ export function Navbar() {
 
             {/* Actions */}
             <div className="flex items-center gap-4">
-              <Link 
-                href="/admin/login" 
-                className="hidden md:inline-flex text-sm font-medium text-gray-500 hover:text-gray-900"
-              >
-                Admin
-              </Link>
               <a 
                 href="https://wa.me/51944761889?text=Hola%20MATSOF,%20vengo%20de%20su%20p%C3%A1gina%20web%20y%20me%20gustar%C3%ADa%20cotizar%20unos%20productos%20personalizados" 
                 target="_blank" 

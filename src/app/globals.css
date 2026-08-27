@@ -59,6 +59,9 @@
   --primary-foreground: #000000;
   --secondary: #00AEEF;
   --secondary-foreground: #FFFFFF;
+  --cmyk-cian: #00AEEF;
+  --cmyk-magenta: #E3007B;
+  --cmyk-yellow: #FFF200;
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
   --accent: #E3007B;
@@ -94,6 +97,9 @@
   --primary-foreground: #000000;
   --secondary: #00AEEF;
   --secondary-foreground: #FFFFFF;
+  --cmyk-cian: #00AEEF;
+  --cmyk-magenta: #E3007B;
+  --cmyk-yellow: #FFF200;
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
   --accent: #E3007B;

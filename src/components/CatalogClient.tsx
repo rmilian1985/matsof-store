@@ -43,7 +43,7 @@ function CatalogContent({ products }: { products: Product[] }) {
   ]
 
   // Determinar si debemos mostrar el filtro de género
-  const categoriesWithGender = ['Todos', 'Polos', 'Polos y Poleras', 'Gorras']
+  const categoriesWithGender = ['Polos', 'Polos y Poleras', 'Gorras']
   const showGenderFilter = categoriesWithGender.includes(activeCategory)
 
   // Aplicar ambos filtros
