@@ -3,6 +3,7 @@ import HeroSection from '@/components/HeroSection'
 import CategoryGrid from '@/components/CategoryGrid'
 import PrintingTechniques from '@/components/PrintingTechniques'
 import FeaturesSection from '@/components/FeaturesSection'
+import WholesaleSection from '@/components/WholesaleSection'
 import Footer from '@/components/Footer'
 import { CatalogClient } from '@/components/CatalogClient'
 import { db } from '@/lib/db'
@@ -38,6 +39,7 @@ export default async function Home() {
 
         <PrintingTechniques />
 
+        <WholesaleSection />
 
         <FeaturesSection />
       </main>
