@@ -83,7 +83,14 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <div className="h-px w-full bg-zinc-200 my-2" />
 
             <div className="mt-4">
-              <AddToCartButton product={product} />
+              <AddToCartButton product={{
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                imageUrl: product.imageUrl,
+                category: product.category,
+                gender: product.gender
+              }} />
               
               <p className="text-zinc-500 font-medium text-sm mt-4 text-center sm:text-left">
                 Agrega los productos que desees y luego envía tu pedido por WhatsApp.

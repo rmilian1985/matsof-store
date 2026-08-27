@@ -28,7 +28,8 @@ export function FloatingCart() {
     let message = 'Hola MATSOF, me gustaría hacer el siguiente pedido:\n\n'
     
     items.forEach(item => {
-      message += `- ${item.quantity}x ${item.name} (S/ ${(item.price * item.quantity).toFixed(2)})\n`
+      const sizeText = item.size ? ` (Talla: ${item.size})` : ''
+      message += `- ${item.quantity}x ${item.name}${sizeText} (S/ ${(item.price * item.quantity).toFixed(2)})\n`
     })
     
     message += `\n*Total a pagar: S/ ${getTotal().toFixed(2)}*`
@@ -106,6 +107,7 @@ export function FloatingCart() {
                     <h3 className="font-semibold text-sm text-zinc-800 line-clamp-2 leading-tight">
                       <span className="text-secondary font-bold mr-1">{item.quantity}x</span> 
                       {item.name}
+                      {item.size && <span className="block text-zinc-500 font-normal mt-0.5 text-xs">Talla: {item.size}</span>}
                     </h3>
                     <button 
                       onClick={() => removeItem(item.id)}
