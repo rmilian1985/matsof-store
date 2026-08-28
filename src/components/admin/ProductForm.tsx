@@ -38,6 +38,15 @@ export default function ProductForm({
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const selectedFile = e.target.files[0]
+      
+      // Límite de 4.5MB para Vercel Serverless Functions
+      if (selectedFile.size > 4.5 * 1024 * 1024) {
+        setError('La imagen es muy grande. El tamaño máximo permitido es 4.5MB.')
+        if (fileInputRef.current) fileInputRef.current.value = ''
+        return
+      }
+      
+      setError('')
       setFile(selectedFile)
       
       // Crear vista previa

@@ -11,26 +11,26 @@ export default function CustomDesignSection() {
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || e.target.files.length === 0) return
     const file = e.target.files[0]
-    
+
     if (!file.type.startsWith('image/')) {
       setUploadError('Por favor sube una imagen válida (JPG, PNG)')
       return
     }
-    
+
     setIsUploading(true)
     setUploadError('')
-    
+
     try {
       const filename = `${Date.now()}-${file.name.replace(/\s+/g, '-')}`
       const response = await fetch(`/api/upload-public?filename=${encodeURIComponent(filename)}`, {
         method: 'POST',
         body: file,
       })
-      
+
       if (!response.ok) {
         throw new Error('Error al subir imagen')
       }
-      
+
       const blob = await response.json()
       setDesignUrl(blob.url)
     } catch (error) {
@@ -61,7 +61,7 @@ export default function CustomDesignSection() {
 
       <div className="container mx-auto px-4 relative z-10 max-w-5xl">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          
+
           {/* Texto e Información */}
           <div className="space-y-6 text-center md:text-left">
             <div className="inline-block px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 text-sm font-semibold mb-2">
@@ -81,7 +81,7 @@ export default function CustomDesignSection() {
           {/* Tarjeta de Subida */}
           <div className="bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-xl shadow-2xl">
             <div className="flex flex-col gap-6">
-              
+
               {!designUrl ? (
                 <>
                   <div className="text-center space-y-2">
@@ -91,8 +91,8 @@ export default function CustomDesignSection() {
 
                   <label className={`
                     relative overflow-hidden flex flex-col items-center justify-center gap-4 w-full h-48 border-2 border-dashed rounded-2xl cursor-pointer transition-all group
-                    ${isUploading 
-                      ? 'border-cyan-500/50 bg-cyan-500/5 cursor-not-allowed' 
+                    ${isUploading
+                      ? 'border-cyan-500/50 bg-cyan-500/5 cursor-not-allowed'
                       : 'border-zinc-600 hover:border-cyan-400 hover:bg-cyan-400/5'}
                   `}>
                     {isUploading ? (
@@ -111,10 +111,10 @@ export default function CustomDesignSection() {
                         </div>
                       </div>
                     )}
-                    <input 
-                      type="file" 
-                      accept="image/*" 
-                      className="hidden" 
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
                       onChange={handleFileUpload}
                       disabled={isUploading}
                     />
@@ -130,15 +130,15 @@ export default function CustomDesignSection() {
                     <h3 className="text-xl font-semibold text-emerald-400">¡Diseño subido con éxito!</h3>
                     <p className="text-zinc-400">Tu archivo está seguro en nuestra nube.</p>
                   </div>
-                  
+
                   <div className="flex flex-col sm:flex-row gap-3 w-full mt-4">
-                    <button 
+                    <button
                       onClick={() => setDesignUrl('')}
                       className="flex-1 py-3 px-4 rounded-xl border border-zinc-700 hover:bg-zinc-800 transition-colors text-sm font-medium"
                     >
                       Subir otro archivo
                     </button>
-                    <button 
+                    <button
                       onClick={handleWhatsApp}
                       className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white transition-colors text-sm font-bold shadow-lg shadow-[#25D366]/20"
                     >

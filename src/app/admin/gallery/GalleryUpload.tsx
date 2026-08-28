@@ -12,34 +12,34 @@ export default function GalleryUpload() {
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || e.target.files.length === 0) return
     const file = e.target.files[0]
-    
+
     if (!file.type.startsWith('image/')) {
       setUploadError('Por favor sube una imagen válida (JPG, PNG)')
       return
     }
-    
+
     setIsUploading(true)
     setUploadError('')
-    
+
     try {
       const filename = `gallery-${Date.now()}-${file.name.replace(/\s+/g, '-')}`
       const response = await fetch(`/api/upload-public?filename=${encodeURIComponent(filename)}`, {
         method: 'POST',
         body: file,
       })
-      
+
       if (!response.ok) {
         throw new Error('Error al subir imagen a Vercel Blob')
       }
-      
+
       const blob = await response.json()
-      
+
       // Guardar en base de datos
       const res = await createGalleryImage({ imageUrl: blob.url, title: title || undefined })
       if (!res.success) {
         throw new Error(res.error)
       }
-      
+
       setTitle('')
     } catch (error) {
       console.error(error)
@@ -66,11 +66,11 @@ export default function GalleryUpload() {
             disabled={isUploading}
           />
         </div>
-        
+
         <label className={`
           flex items-center justify-center gap-3 w-full h-24 border-2 border-dashed rounded-xl cursor-pointer transition-all
-          ${isUploading 
-            ? 'border-gray-300 bg-gray-50 cursor-not-allowed opacity-70' 
+          ${isUploading
+            ? 'border-gray-300 bg-gray-50 cursor-not-allowed opacity-70'
             : 'border-gray-300 hover:border-cyan-500 hover:bg-cyan-50 text-gray-600'}
         `}>
           {isUploading ? (
@@ -84,10 +84,10 @@ export default function GalleryUpload() {
               <span className="font-medium">Seleccionar foto para la galería</span>
             </>
           )}
-          <input 
-            type="file" 
-            accept="image/*" 
-            className="hidden" 
+          <input
+            type="file"
+            accept="image/*"
+            className="hidden"
             onChange={handleFileUpload}
             disabled={isUploading}
           />
