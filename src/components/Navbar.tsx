@@ -6,9 +6,9 @@ export function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       {/* Top Bar - Redes Sociales y Contacto */}
-      <div className="bg-gray-900 text-gray-200 py-1.5 border-b border-gray-800">
-        <div className="container mx-auto px-4 md:px-8 flex justify-between items-center text-xs font-medium">
-          <div className="hidden md:flex items-center gap-4">
+      <div className="bg-gray-900 text-gray-200 py-2 border-b border-gray-800">
+        <div className="container mx-auto px-4 md:px-8 flex justify-between items-center text-sm font-medium">
+          <div className="hidden md:flex items-center gap-6">
             <span>📍 Lima, Perú - Envíos a todo el país</span>
             <span>📞 +51 944 761 889</span>
           </div>
@@ -39,66 +39,64 @@ export function Navbar() {
       {/* Main Navbar */}
       <nav className="bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
         <div className="container mx-auto px-4 md:px-8">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-20 gap-4 lg:gap-8">
             
             {/* Logo */}
-            <div className="flex items-center gap-6 flex-1">
-              <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-                <div className="relative w-32 h-12">
-                  <Image 
-                    src="/logo-matsof.png" 
-                    alt="MATSOF Logo" 
-                    fill
-                    className="object-contain object-left"
-                    priority
-                  />
-                </div>
-              </Link>
-              
-              {/* Buscador */}
-              <div className="hidden md:flex flex-1 max-w-md relative">
-                <form action="/" method="GET" className="w-full relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <svg className="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                  </div>
-                  <input
-                    type="text"
-                    name="q"
-                    className="block w-full pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
-                    placeholder="Buscar productos..."
-                  />
-                </form>
+            <Link href="/" className="flex items-center gap-2 flex-shrink-0">
+              <div className="relative w-32 h-12">
+                <Image 
+                  src="/logo-matsof.png" 
+                  alt="MATSOF Logo" 
+                  fill
+                  className="object-contain object-left"
+                  priority
+                />
               </div>
+            </Link>
+            
+            {/* Buscador */}
+            <div className="hidden md:flex flex-1 max-w-sm lg:max-w-md relative mx-auto">
+              <form action="/" method="GET" className="w-full relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <svg className="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </div>
+                <input
+                  type="text"
+                  name="q"
+                  className="block w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-base placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
+                  placeholder="Buscar productos..."
+                />
+              </form>
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-8">
-              <Link href="/nosotros" className="text-sm font-semibold text-gray-700 hover:text-cyan-600 transition-colors">
+            <div className="hidden lg:flex items-center gap-6 xl:gap-8 flex-shrink-0">
+              <Link href="/nosotros" className="text-base font-semibold text-gray-700 hover:text-cyan-600 transition-colors">
                 Nosotros
               </Link>
-              <Link href="/#categorias" className="text-sm font-semibold text-gray-700 hover:text-cyan-600 transition-colors">
+              <Link href="/#categorias" className="text-base font-semibold text-gray-700 hover:text-cyan-600 transition-colors">
                 Categorías
               </Link>
-              <Link href="/#productos" className="text-sm font-semibold text-gray-700 hover:text-cyan-600 transition-colors">
+              <Link href="/#productos" className="text-base font-semibold text-gray-700 hover:text-cyan-600 transition-colors">
                 Catálogo
               </Link>
               <a 
                 href="https://wa.me/51944761889?text=Hola%20MATSOF,%20tengo%20una%20consulta" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-sm font-semibold text-gray-700 hover:text-cyan-600 transition-colors"
+                className="text-base font-semibold text-gray-700 hover:text-cyan-600 transition-colors whitespace-nowrap"
               >
                 Contacto
               </a>
             </div>
 
             {/* Actions */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 flex-shrink-0">
               <a 
                 href="https://wa.me/51944761889?text=Hola%20MATSOF,%20vengo%20de%20su%20p%C3%A1gina%20web%20y%20me%20gustar%C3%ADa%20cotizar%20unos%20productos%20personalizados" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-6 py-2.5 bg-gray-900 text-white text-sm font-bold rounded-lg hover:bg-cyan-600 transition-all shadow-md hover:shadow-cyan-500/30"
+                className="inline-flex items-center justify-center px-6 py-2.5 bg-gray-900 text-white text-base font-bold rounded-lg hover:bg-cyan-600 transition-all shadow-md hover:shadow-cyan-500/30 whitespace-nowrap"
               >
                 Cotizar
               </a>
