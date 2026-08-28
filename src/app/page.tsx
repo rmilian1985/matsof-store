@@ -6,6 +6,7 @@ import FeaturesSection from '@/components/FeaturesSection'
 import WholesaleSection from '@/components/WholesaleSection'
 import Footer from '@/components/Footer'
 import { CatalogClient } from '@/components/CatalogClient'
+import CustomDesignSection from '@/components/CustomDesignSection'
 import FAQSection from '@/components/FAQSection'
 import { db } from '@/lib/db'
 
@@ -22,6 +23,8 @@ export default async function Home() {
       <main className="flex-grow pt-8">
         <HeroSection />
         <CategoryGrid />
+        
+        <CustomDesignSection />
         
         {/* Catálogo de Productos (Manteniendo la funcionalidad anterior) */}
         <section id="productos" className="py-20 bg-gray-50 border-y border-gray-100">
