@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useCartStore } from '@/store/cartStore'
 import { ShoppingCart, X, Plus, Minus, Trash2 } from 'lucide-react'
+import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 
 export function FloatingCart() {
@@ -15,11 +16,13 @@ export function FloatingCart() {
   const getTotal = useCartStore((state) => state.getTotal)
   const getTotalItems = useCartStore((state) => state.getTotalItems)
 
+  const pathname = usePathname()
+
   useEffect(() => {
     setMounted(true)
   }, [])
 
-  if (!mounted) return null
+  if (!mounted || pathname?.startsWith('/admin')) return null
 
   const handleWhatsAppOrder = () => {
     // Aquí puedes poner el número real de MATSOF

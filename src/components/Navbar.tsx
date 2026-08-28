@@ -1,8 +1,17 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { ShoppingCart } from 'lucide-react'
+import { usePathname } from 'next/navigation'
 
 export function Navbar() {
+  const pathname = usePathname()
+
+  if (pathname?.startsWith('/admin')) {
+    return null
+  }
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       {/* Top Bar - Redes Sociales y Contacto */}
