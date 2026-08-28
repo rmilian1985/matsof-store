@@ -40,7 +40,7 @@ export function ProductCard({ product }: ProductCardProps) {
   }
 
   return (
-    <div className="group relative overflow-hidden rounded-2xl bg-white border border-secondary/20 p-4 transition-all hover:border-secondary hover:-translate-y-1 shadow-[0_8px_30px_rgb(0,0,0,0.06)] flex flex-col">
+    <div className="group relative overflow-hidden rounded-2xl bg-white border border-secondary/20 p-4 transition-all hover:border-secondary shadow-[0_8px_30px_rgb(0,0,0,0.06)] flex flex-col">
       {/* Glow Effect */}
       <div className="absolute inset-0 bg-gradient-to-tr from-secondary/10 via-transparent to-accent/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none" />
       
