@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { db } from '@/lib/db'
+import { ScrollReveal } from './ScrollReveal'
 
 export default async function GallerySection() {
   const images = await db.galleryImage.findMany({
@@ -28,27 +29,28 @@ export default async function GallerySection() {
         </div>
 
         <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
-          {images.map((img) => (
-            <div 
-              key={img.id} 
-              className="relative rounded-2xl overflow-hidden break-inside-avoid group cursor-pointer"
-            >
-              <Image
-                src={img.imageUrl}
-                alt={img.title || 'Trabajo realizado por MATSOF'}
-                width={500}
-                height={500}
-                className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              
-              {img.title && (
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                  <p className="text-white font-medium text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    {img.title}
-                  </p>
-                </div>
-              )}
-            </div>
+          {images.map((img, index) => (
+            <ScrollReveal key={img.id} delay={Math.min(index * 0.1, 0.5)}>
+              <div 
+                className="relative rounded-2xl overflow-hidden break-inside-avoid group cursor-pointer"
+              >
+                <Image
+                  src={img.imageUrl}
+                  alt={img.title || 'Trabajo realizado por MATSOF'}
+                  width={500}
+                  height={500}
+                  className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                
+                {img.title && (
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-medium text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                      {img.title}
+                    </p>
+                  </div>
+                )}
+              </div>
+            </ScrollReveal>
           ))}
         </div>
         

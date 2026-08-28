@@ -5,6 +5,8 @@ import { useSearchParams } from 'next/navigation'
 import { ProductCard } from './ProductCard'
 // import { Search } from 'lucide-react'
 
+import { ScrollReveal } from './ScrollReveal'
+
 type Product = {
   id: string
   name: string
@@ -82,10 +84,12 @@ function CatalogContent({ products }: { products: Product[] }) {
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {filteredProducts.map((product) => (
-            <div key={product.id} className="animate-in fade-in zoom-in-95 duration-500 fill-mode-both">
-              <ProductCard product={product as any} />
-            </div>
+          {filteredProducts.map((product, index) => (
+            <ScrollReveal key={product.id} delay={Math.min(index * 0.1, 0.5)}>
+              <div className="h-full">
+                <ProductCard product={product as any} />
+              </div>
+            </ScrollReveal>
           ))}
         </div>
       )}
