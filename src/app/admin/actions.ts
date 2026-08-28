@@ -88,3 +88,27 @@ export async function deleteProduct(id: string) {
     return { success: false, error: 'Error al eliminar producto' }
   }
 }
+
+export async function createGalleryImage(data: { imageUrl: string; title?: string }) {
+  try {
+    await db.galleryImage.create({ data })
+    revalidatePath('/')
+    revalidatePath('/admin/gallery')
+    return { success: true }
+  } catch (error) {
+    console.error('Error al crear imagen de galería:', error)
+    return { success: false, error: 'Error al guardar la imagen' }
+  }
+}
+
+export async function deleteGalleryImage(id: string) {
+  try {
+    await db.galleryImage.delete({ where: { id } })
+    revalidatePath('/')
+    revalidatePath('/admin/gallery')
+    return { success: true }
+  } catch (error) {
+    console.error('Error al eliminar imagen de galería:', error)
+    return { success: false, error: 'Error al eliminar la imagen' }
+  }
+}

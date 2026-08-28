@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { LayoutDashboard, Package, ArrowLeft, LogOut } from 'lucide-react'
+import { LayoutDashboard, Package, ArrowLeft, LogOut, Image as ImageIcon } from 'lucide-react'
 import { logout } from './actions'
 
 export default function AdminLayout({
@@ -47,6 +47,17 @@ export default function AdminLayout({
           >
             <Package size={20} />
             Mis Productos
+          </Link>
+          <Link
+            href="/admin/gallery"
+            className={`flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors ${
+              pathname === '/admin/gallery' 
+                ? 'bg-[var(--cmyk-magenta)]/10 text-[var(--cmyk-magenta)]' 
+                : 'text-gray-600 hover:bg-gray-50'
+            }`}
+          >
+            <ImageIcon size={20} />
+            Galería de Trabajos
           </Link>
         </nav>
 

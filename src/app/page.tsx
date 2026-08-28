@@ -7,6 +7,7 @@ import WholesaleSection from '@/components/WholesaleSection'
 import Footer from '@/components/Footer'
 import { CatalogClient } from '@/components/CatalogClient'
 import CustomDesignSection from '@/components/CustomDesignSection'
+import GallerySection from '@/components/GallerySection'
 import FAQSection from '@/components/FAQSection'
 import { db } from '@/lib/db'
 
@@ -40,6 +41,8 @@ export default async function Home() {
             <CatalogClient products={products} />
           </div>
         </section>
+
+        <GallerySection />
 
         <PrintingTechniques />
 
