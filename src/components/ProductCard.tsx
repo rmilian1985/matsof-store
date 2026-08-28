@@ -26,6 +26,7 @@ export function ProductCard({ product }: ProductCardProps) {
     e.preventDefault() 
     const item: CartItem = {
       id: product.id,
+      productId: product.id,
       name: product.name,
       price: product.price,
       imageUrl: product.imageUrl,

@@ -35,7 +35,9 @@ export function FloatingCart() {
       const colorText = item.color ? ` (Color: ${item.color})` : ''
       const designText = item.designUrl ? `\n   📎 Diseño adjunto: ${item.designUrl}` : ''
       
-      message += `- ${item.quantity}x ${item.name}${sizeText}${colorText} (S/ ${(item.price * item.quantity).toFixed(2)})${designText}\n`
+      const productLink = item.productId ? `\n   🔗 Ver producto: https://matsof-store.vercel.app/product/${item.productId}` : ''
+      
+      message += `- ${item.quantity}x ${item.name}${sizeText}${colorText} (S/ ${(item.price * item.quantity).toFixed(2)})${designText}${productLink}\n\n`
     })
     
     message += `\n*Total a pagar: S/ ${getTotal().toFixed(2)}*`

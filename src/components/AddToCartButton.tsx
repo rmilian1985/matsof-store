@@ -81,6 +81,7 @@ export function AddToCartButton({ product }: AddToCartButtonProps) {
   const handleAdd = () => {
     const item: CartItem = {
       id: `${product.id}${selectedSize ? `-${selectedSize}` : ''}${selectedColor ? `-${selectedColor}` : ''}`,
+      productId: product.id,
       name: product.name,
       price: product.price,
       imageUrl: product.imageUrl,
