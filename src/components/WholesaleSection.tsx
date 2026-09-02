@@ -1,28 +1,24 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Users, Calendar, Gift, Building2, ArrowRight } from 'lucide-react'
+import { Building2, ArrowRight } from 'lucide-react'
 
 const benefits = [
   {
-    icon: Calendar,
     title: 'Eventos y Cumpleaños',
     description: 'Sorprende a tus invitados con recuerdos personalizados únicos para tu celebración.',
     image: '/images/wholesale/eventos.jpg'
   },
   {
-    icon: Building2,
     title: 'Uniformes Corporativos',
     description: 'Viste a tu equipo con polos y accesorios que reflejen la identidad de tu empresa.',
     image: '/images/wholesale/uniformes.jpg'
   },
   {
-    icon: Gift,
     title: 'Merchandising',
     description: 'Fideliza a tus clientes con artículos promocionales de alta calidad con tu logo.',
     image: '/images/wholesale/merchandising.jpg'
   },
   {
-    icon: Users,
     title: 'Descuentos por Volumen',
     description: 'Obtén tarifas especiales a partir de docenas, cientos o miles de unidades.',
     image: '/images/wholesale/volumen.jpg'
@@ -73,18 +69,14 @@ export default function WholesaleSection() {
 
           <div className="lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
             {benefits.map((benefit, idx) => {
-              const Icon = benefit.icon
               return (
                 <div key={idx} className="bg-white overflow-hidden rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 hover:-translate-y-1 transition-transform duration-300">
-                  <div className="relative h-40 w-full bg-gray-100">
+                  <div className="relative h-56 w-full bg-gray-100">
                     <Image src={benefit.image} alt={benefit.title} fill className="object-cover" sizes="(max-width: 640px) 100vw, 50vw" />
                   </div>
-                  <div className="p-6">
-                    <div className="w-12 h-12 bg-cyan-50 rounded-xl flex items-center justify-center mb-4">
-                      <Icon className="w-6 h-6 text-cyan-600" />
-                    </div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">{benefit.title}</h3>
-                    <p className="text-gray-600 text-sm">{benefit.description}</p>
+                  <div className="p-6 text-center">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">{benefit.title}</h3>
+                    <p className="text-gray-600 text-sm leading-relaxed">{benefit.description}</p>
                   </div>
                 </div>
               )
